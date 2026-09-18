@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>哄哄小星球 · 给你的心情解药</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #fff7f0 0%, #ffe9e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        /* 主卡片 */
+        .card {
+            max-width: 620px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 52px;
+            padding: 32px 26px 38px;
+            box-shadow: 0 25px 45px -12px rgba(230, 120, 90, 0.25),
+                        0 6px 18px rgba(0, 0, 0, 0.03),
+                        inset 0 1px 4px rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 215, 200, 0.6);
+            transition: all 0.2s ease;
+        }
+
+        /* 标题区 */
+        .title-section {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .title-section h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #7a3e2e;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .title-section h1 span {
+            background: #ffe0d4;
+            padding: 4px 14px;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #b45f4a;
+        }
+
+        .subhead {
+            color: #b07b6c;
+            font-size: 1rem;
+            margin-top: 8px;
+            font-weight: 400;
+            border-bottom: 1px dashed #f3cfc2;
+            padding-bottom: 18px;
+            display: inline-block;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        /* 心情按钮网格 */
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin: 24px 0 32px;
+        }
+
+        .mood-btn {
+            background: #fffbf8;
+            border: 1.5px solid #ffd9cc;
+            border-radius: 50px;
+            padding: 14px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 4px 10px rgba(245, 180, 160, 0.1);
+            font-weight: 500;
+            color: #6b3f32;
+            font-size: 1rem;
+        }
+
+        .mood-btn .emoji-big {
+            font-size: 2.1rem;
+            line-height: 1;
+            filter: drop-shadow(0 4px 4px rgba(210, 120, 90, 0.15));
+        }
+
+        .mood-btn:hover {
+            background: #ffece3;
+            border-color: #f8b9a4;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 16px -6px rgba(240, 140, 110, 0.3);
+        }
+
+        .mood-btn.active {
+            background: #ffdbcf;
+            border-color: #e5866b;
+            box-shadow: 0 8px 18px -4px #e5866b55;
+            color: #4d2a1e;
+        }
+
+        /* 回复卡片 */
+        .reply-box {
+            background: #fffdfa;
+            border-radius: 40px;
+            padding: 28px 24px;
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: inset 0 2px 12px #fff8f2, 0 12px 24px -12px #eac2b2;
+            border: 1px solid #ffe3d8;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .reply-emoji {
+            font-size: 3.4rem;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            filter: drop-shadow(0 6px 8px #ffd9cc);
+        }
+
+        .reply-text {
+            font-size: 1.3rem;
+            line-height: 1.55;
+            color: #5e3a2e;
+            font-weight: 450;
+            word-break: break-word;
+            max-width: 90%;
+            margin: 0 auto;
+            transition: opacity 0.2s;
+            font-style: normal;
+        }
+
+        .reply-sub {
+            margin-top: 14px;
+            font-size: 0.95rem;
+            color: #c58a77;
+            background: #fff2eb;
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            border: 1px dashed #f6c8b8;
+            letter-spacing: 0.3px;
+        }
+
+        /* 底部小字 */
+        .footer-note {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 0.85rem;
+            color: #cfaa9c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border-top: 1px solid #ffe2d6;
+            padding-top: 18px;
+        }
+
+        .footer-note span {
+            font-size: 1.1rem;
+        }
+
+        /* 自适应 */
+        @media (max-width: 450px) {
+            .card {
+                padding: 22px 16px 28px;
+                border-radius: 36px;
+            }
+
+            .title-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .mood-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .mood-btn {
+                padding: 12px 4px;
+                font-size: 0.9rem;
+            }
+
+            .mood-btn .emoji-big {
+                font-size: 1.8rem;
+            }
+
+            .reply-text {
+                font-size: 1.15rem;
+            }
+
+            .reply-emoji {
+                font-size: 2.8rem;
+            }
+        }
+
+        /* 切换时的小动画 */
+        .fade-in {
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0.4;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="title-section">
+            <h1>
+                哄哄小星球
+                <span>✨</span>
+            </h1>
+            <div class="subhead">今天是什么心情呀？点一下，我哄你</div>
+        </div>
+
+        <!-- 心情按钮用JS动态生成，也可直接写，但为了维护方便，用JS渲染同时保证数据统一 -->
+        <div class="mood-grid" id="moodGrid"></div>
+
+        <!-- 回复展示区 -->
+        <div class="reply-box" id="replyBox">
+            <div class="reply-emoji" id="replyEmoji">💖</div>
+            <div class="reply-text" id="replyText">选一个心情，我马上哄你～</div>
+            <div class="reply-sub" id="replySub">你在我这里永远最优先</div>
+        </div>
+
+        <div class="footer-note">
+            <span>🍬</span> 随时点，随时哄，不厌其烦 <span>🍬</span>
+        </div>
+    </div>
+
+    <script>
+        // ---------- 心情数据大全 ----------
+        const moodData = [
+            {
+                id: 'angry',
+                emoji: '😤',
+                label: '生气',
+                replyEmoji: '😠➡️😊',
+                mainText: '现在皱起眉头没有笑得时候好看惹。专家都说戒糖让人有点不开心惹，找我请你喝低卡的果茶叭！',
+                subText: '（悄悄点好你喜欢的少少糖）'
+            },
+            {
+                id: 'sad',
+                emoji: '😢',
+                label: '难过',
+                replyEmoji: '🫂',
+                mainText: '抱抱我的小委屈包。难过的时候不用逞强，我陪你当一会儿小蘑菇。你超好，超值得，全世界我最偏心你。',
+                subText: '我的肩膀永远给你留着'
+            },
+            {
+                id: 'tired',
+                emoji: '😩',
+                label: '疲惫',
+                replyEmoji: '🛋️💤',
+                mainText: '累坏了吧？快过来靠着我，给你捏捏肩，再给你泡一杯热热的蜂蜜牛奶。今天辛苦啦，剩下的交给我。',
+                subText: '允许自己休息，你又不是超人'
+            },
+            {
+                id: 'anxious',
+                emoji: '😰',
+                label: '焦虑',
+                replyEmoji: '🌿',
+                mainText: '深呼吸，我在呢。别怕，不管发生什么，我们一起面对。你已经做得很好了，慢慢来，比较快。',
+                subText: '把担心分我一半，你就轻松了'
+            },
+            {
+                id: 'wronged',
+                emoji: '🥺',
+                label: '委屈',
+                replyEmoji: '🫂💧',
+                mainText: '谁让我宝贝受委屈了？告诉我，我去帮你出气（或者陪你骂一会儿）。你一点错都没有，你值得所有的好。',
+                subText: '你永远可以跟我撒娇'
+            },
+            {
+                id: 'happy',
+                emoji: '🥳',
+                label: '开心',
+                replyEmoji: '🎉',
+                mainText: '哇！看到你开心我也超级开心！快跟我分享一下，我要让这份快乐加倍！今天你最大，想干嘛我都陪你。',
+                subText: '你的笑容是我的充电器'
+            },
+            {
+                id: 'bored',
+                emoji: '😐',
+                label: '无聊',
+                replyEmoji: '🎲',
+                mainText: '是不是有点闷？我们来玩个小游戏，或者我讲个冷笑话？再不然我陪你云逛街，云吃甜品，云撸猫～',
+                subText: '我有一百种让你不无聊的办法'
+            },
+            {
+                id: 'hungry',
+                emoji: '🍜',
+                label: '饿了',
+                replyEmoji: '🍰🍓',
+                mainText: '不能饿着我的宝贝！想吃点什么？我马上安排，低卡果茶、小蛋糕、热乎乎的拉面……你点，我请。',
+                subText: '投喂你是我最大的幸福'
+            },
+            {
+                id: 'pms',
+                emoji: '🌧️',
+                label: '生理期',
+                replyEmoji: '🧸☕',
+                mainText: '特殊时期更要好好宠你。给你准备了暖宝宝和红糖水，还有你爱看的剧。什么都不用管，躺着享受就好。',
+                subText: '这周你最大，我全天候待命'
+            }
+        ];
+
+        // 获取容器
+        const moodGrid = document.getElementById('moodGrid');
+        const replyEmoji = document.getElementById('replyEmoji');
+        const replyText = document.getElementById('replyText');
+        const replySub = document.getElementById('replySub');
+        const replyBox = document.getElementById('replyBox');
+
+        // 默认选中第一个（生气）也可以不选，但让页面初始有内容
+        let currentMoodId = 'angry'; // 默认选中生气
+
+        // ---------- 渲染按钮 ----------
+        function renderMoodButtons() {
+            moodGrid.innerHTML = '';
+            moodData.forEach(mood => {
+                const btn = document.createElement('button');
+                btn.className = `mood-btn ${mood.id === currentMoodId ? 'active' : ''}`;
+                btn.dataset.id = mood.id;
+                btn.setAttribute('aria-label', `心情：${mood.label}`);
+                btn.innerHTML = `
+                    <span class="emoji-big">${mood.emoji}</span>
+                    <span>${mood.label}</span>
+                `;
+                btn.addEventListener('click', () => handleMoodSelect(mood.id));
+                moodGrid.appendChild(btn);
+            });
+        }
+
+        // ---------- 处理选择心情 ----------
+        function handleMoodSelect(moodId) {
+            if (currentMoodId === moodId) {
+                // 如果点的是当前已选中的，也可以再微微更新，但是为了反馈可以轻微刷新
+                // 但为了防止无意义动画，可以更新回复（其实数据一样）
+                // 我们还是调用更新，让用户知道点击有反馈
+            }
+            currentMoodId = moodId;
+
+            // 更新按钮激活状态
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                if (btn.dataset.id === moodId) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // 根据id查找心情数据
+            const mood = moodData.find(m => m.id === moodId);
+            if (!mood) return;
+
+            // 给回复框加一点动画
+            replyBox.classList.remove('fade-in');
+            // 强制重绘
+            void replyBox.offsetWidth;
+            replyBox.classList.add('fade-in');
+
+            // 更新内容（使用setTimeout小延迟让动画更顺滑）
+            setTimeout(() => {
+                replyEmoji.textContent = mood.replyEmoji || '💬';
+                replyText.textContent = mood.mainText;
+                replySub.textContent = mood.subText || '你永远是我的宝贝';
+            }, 30);
+        }
+
+        // ---------- 初始化页面：渲染按钮，显示默认心情(生气)的回复 ----------
+        function initPage() {
+            renderMoodButtons();
+
+            // 默认显示生气对应的回复 (因为currentMoodId = 'angry')
+            const defaultMood = moodData.find(m => m.id === currentMoodId);
+            if (defaultMood) {
+                replyEmoji.textContent = defaultMood.replyEmoji;
+                replyText.textContent = defaultMood.mainText;
+                replySub.textContent = defaultMood.subText;
+            }
+        }
+
+        // 加上淡入效果到replyBox初始
+        initPage();
+        // 初始也加个fade-in让页面舒服
+        replyBox.classList.add('fade-in');
+
+        // 可选：如果用户点击当前已激活的按钮，也触发一次轻微提醒（其实已经足够了）
+        // 也可以增加一些彩蛋，但保留简洁。
+
+        // 额外小优化：点击回复区域有轻微心跳动画? 不需要太复杂。但可以加个双击彩蛋? 不弄太花哨。
+        // 保证所有按钮都有事件
+    </script>
+</body>
+</html>
