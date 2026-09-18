@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>哄哄小星球 · 给你的心情解药</title>
+    <title>哄哄沈诗萱 · 给小朋友的低卡解药</title>
     <style>
         * {
             margin: 0;
@@ -243,10 +243,10 @@
     <div class="card">
         <div class="title-section">
             <h1>
-                哄哄小星球
+                哄哄沈诗萱
                 <span>✨</span>
             </h1>
-            <div class="subhead">今天是什么心情呀？点一下，我哄你</div>
+            <div class="subhead">今天小朋友在想什么哦？告诉我叭老婆我来哄你呀</div>
         </div>
 
         <!-- 心情按钮用JS动态生成，也可直接写，但为了维护方便，用JS渲染同时保证数据统一 -->
@@ -255,12 +255,12 @@
         <!-- 回复展示区 -->
         <div class="reply-box" id="replyBox">
             <div class="reply-emoji" id="replyEmoji">💖</div>
-            <div class="reply-text" id="replyText">选一个心情，我马上哄你～</div>
+            <div class="reply-text" id="replyText">今天小朋友在想什么哦？告诉我叭老婆我来哄你呀</div>
             <div class="reply-sub" id="replySub">你在我这里永远最优先</div>
         </div>
 
         <div class="footer-note">
-            <span>🍬</span> 随时点，随时哄，不厌其烦 <span>🍬</span>
+            <span>🍬</span> 我一遍遍不厌其烦的来告诉你你一点都不差一点也不讨人嫌呀 <span>🍬</span>
         </div>
     </div>
 
@@ -272,7 +272,7 @@
                 emoji: '😤',
                 label: '生气',
                 replyEmoji: '😠➡️😊',
-                mainText: '现在皱起眉头没有笑得时候好看惹。专家都说戒糖让人有点不开心惹，找我请你喝低卡的果茶叭！',
+                mainText: '现在皱起眉头没有笑得时候好看惹。专家都说戒糖让人有点不开心惹，要不要让做错事的陈嘉睿请你吃棒冰叭',
                 subText: '（悄悄点好你喜欢的少少糖）'
             },
             {
@@ -280,45 +280,45 @@
                 emoji: '😢',
                 label: '难过',
                 replyEmoji: '🫂',
-                mainText: '抱抱我的小委屈包。难过的时候不用逞强，我陪你当一会儿小蘑菇。你超好，超值得，全世界我最偏心你。',
+                mainText: '抱抱我的小朋友啦。难过的时候补药逞强嘛，泥说泥不想我陪想一个人呆一会，那我就等着你啦。全世界我都只偏心你。',
                 subText: '我的肩膀永远给你留着'
             },
             {
                 id: 'tired',
                 emoji: '😩',
-                label: '疲惫',
+                label: '累累......',
                 replyEmoji: '🛋️💤',
-                mainText: '累坏了吧？快过来靠着我，给你捏捏肩，再给你泡一杯热热的蜂蜜牛奶。今天辛苦啦，剩下的交给我。',
+                mainText: '累坏了吧？靠着窝！今天辛苦啦，剩下的交给我。我给你捏捏摸摸，把生活受的气全部撒出来啦，拍拍揉揉又可以变成小蛋糕惹',
                 subText: '允许自己休息，你又不是超人'
             },
             {
                 id: 'anxious',
                 emoji: '😰',
-                label: '焦虑',
+                label: '又多想啦？',
                 replyEmoji: '🌿',
-                mainText: '深呼吸，我在呢。别怕，不管发生什么，我们一起面对。你已经做得很好了，慢慢来，比较快。',
-                subText: '把担心分我一半，你就轻松了'
+                mainText: '我在呢。别怕，不管发生什么，我们约定好了都一起面对。你已经做得很好惹！别哭我们慢慢来绅士选。',
+                subText: '把担心分我一半，什么都会好起来的哦老婆'
             },
             {
                 id: 'wronged',
                 emoji: '🥺',
-                label: '委屈',
+                label: '委屈巴巴',
                 replyEmoji: '🫂💧',
-                mainText: '谁让我宝贝受委屈了？告诉我，我去帮你出气（或者陪你骂一会儿）。你一点错都没有，你值得所有的好。',
-                subText: '你永远可以跟我撒娇'
+                mainText: '谁让我宝贝受委屈了？告诉窝，我一点都不会敷衍泥.....陪你骂一会儿然后在抱着你好好的聊天啦。小朋友一点错都没有，只有你才值得所有的好。',
+                subText: '泥一直可以跟我撒娇'
             },
             {
                 id: 'happy',
                 emoji: '🥳',
-                label: '开心',
+                label: '开心呀',
                 replyEmoji: '🎉',
-                mainText: '哇！看到你开心我也超级开心！快跟我分享一下，我要让这份快乐加倍！今天你最大，想干嘛我都陪你。',
-                subText: '你的笑容是我的充电器'
+                mainText: '什么这么开心呢，告诉我呀我也想开心开心呢。小朋友天下第一大，窝要一辈子跟随绅士选',
+                subText: '你的笑容好好看呀我想亲————————'
             },
             {
                 id: 'bored',
                 emoji: '😐',
-                label: '无聊',
+                label: '闷闷',
                 replyEmoji: '🎲',
                 mainText: '是不是有点闷？我们来玩个小游戏，或者我讲个冷笑话？再不然我陪你云逛街，云吃甜品，云撸猫～',
                 subText: '我有一百种让你不无聊的办法'
@@ -326,17 +326,17 @@
             {
                 id: 'hungry',
                 emoji: '🍜',
-                label: '饿了',
+                label: '饿惹',
                 replyEmoji: '🍰🍓',
-                mainText: '不能饿着我的宝贝！想吃点什么？我马上安排，低卡果茶、小蛋糕、热乎乎的拉面……你点，我请。',
-                subText: '投喂你是我最大的幸福'
+                mainText: '不能饿着！想吃点什么呀？我马上安排，低卡的饮料还是想吃日料了呀……我请泥呀宝宝。',
+                subText: '投喂你我才最开心最开心呢'
             },
             {
                 id: 'pms',
                 emoji: '🌧️',
                 label: '生理期',
                 replyEmoji: '🧸☕',
-                mainText: '特殊时期更要好好宠你。给你准备了暖宝宝和红糖水，还有你爱看的剧。什么都不用管，躺着享受就好。',
+                mainText: '特殊时期更要好好宠你。随叫随到！有什么安排我都无条件听呀我会更加细心细心再细心的！绅士选只要泥舒舒服服一点就好啦',
                 subText: '这周你最大，我全天候待命'
             }
         ];
